@@ -1,0 +1,19 @@
+{
+  "name": "blank-app",
+  "version": "0.1.0",
+  "authors": [
+    "Dmitry Vibe <riim@yandex.ru>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-mods": "*",
+    "jquery": "~2.1.3"
+  }
+}

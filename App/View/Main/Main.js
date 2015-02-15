@@ -1,4 +1,4 @@
 
 var Rift = require('riftjs');
 
-var Main = module.exports = Rift.defineView('View.Main');
+module.exports = Rift.defineView('BlankApp.View.Main');

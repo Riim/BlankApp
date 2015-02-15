@@ -20,8 +20,8 @@ var html = fs.readFileSync(__dirname + '/index.html', 'utf8');
 server.get('/', function(req, res) {
 	var app = new App();
 
-	app.view.render().then(function(appHTML) {
-		appHTML += '<script>var model=' + app.model.serialize() + ';</script>';
+	app.view.render(function(appHTML) {
+		appHTML += '<script>var _modelData=' + app.model.serialize() + ';</script>';
 
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;

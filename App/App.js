@@ -7,7 +7,7 @@ var View = require('./View/View');
 var isServer = Rift.isServer;
 var baseViewProto = Rift.BaseView.prototype;
 
-var App = module.exports = Rift.createClass(Rift.BaseApp, {
+var App = Rift.BaseApp.extend({
 	constructor: function(opts) {
 		App.$super.constructor.call(this, opts);
 
@@ -20,3 +20,5 @@ var App = module.exports = Rift.createClass(Rift.BaseApp, {
 		this.view = new View({ block: this.viewBlock });
 	}
 });
+
+module.exports = App;

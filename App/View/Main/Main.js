@@ -1,7 +1,7 @@
 
 var Rift = require('riftjs');
 
-var MainView = Rift.BaseView.extend({
+var MainView = Rift.BaseView.subclass({
 	__class: 'View.Main'
 });
 

@@ -7,7 +7,7 @@ var View = require('./View/View');
 var isServer = Rift.isServer;
 var baseViewProto = Rift.BaseView.prototype;
 
-var App = Rift.BaseApp.extend({
+var App = Rift.BaseApp.subclass({
 	constructor: function(opts) {
 		App.$super.constructor.call(this, opts);
 

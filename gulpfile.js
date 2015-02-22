@@ -14,7 +14,7 @@ gulp.task('view', function(cb) {
 });
 
 gulp.task('server', function() {
-	require('./App/serverApp');
+	require('./App/serverApp/serverApp');
 });
 
 gulp.task('default', ['logic', 'view'], function() {

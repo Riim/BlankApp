@@ -47,7 +47,7 @@ gulp.task('scripts-bundle', function() {
 				bundler.add(path.join(__dirname, '..', file));
 			});
 
-		bundler.add(path.join(__dirname, '../App/clientApp.js'));
+		bundler.add(path.join(__dirname, '../App/clientApp/clientApp.js'));
 
 		if (argv.dev) {
 			bundler.on('update', rebundle);

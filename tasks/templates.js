@@ -7,7 +7,7 @@ var $ = require('gulp-load-plugins')();
 var helpers = require('./helpers');
 
 gulp.task('templates-bundle', function() {
-	return gulp.src(glob.sync(['./App/View/*/*.rft']).filter(helpers.isRootFile))
+	return gulp.src(glob.sync(['./App/View/*/*.rtt']).filter(helpers.isRootFile))
 		.pipe($.plumber(helpers.plumberErrorHandler))
 		.pipe($.cached('scripts-bundle-templates'))
 		.pipe($.trim())
@@ -23,6 +23,6 @@ gulp.task('templates-bundle', function() {
 
 gulp.task('templates', ['templates-bundle'], function() {
 	if (argv.dev) {
-		gulp.watch(['App/View/*/*.rft'], ['templates-bundle']);
+		gulp.watch(['App/View/*/*.rtt'], ['templates-bundle']);
 	}
 });

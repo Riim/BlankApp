@@ -3,21 +3,24 @@ var Rift = require('riftjs');
 
 var Model = require('./Model/Model');
 var View = require('./View/View');
+var viewState = require('./viewState');
+var routes = require('./routes');
 
 var isServer = Rift.isServer;
-var baseViewProto = Rift.BaseView.prototype;
+var BaseApp = Rift.BaseApp;
 
-var App = Rift.BaseApp.subclass({
+var App = BaseApp.extend({
 	constructor: function(opts) {
-		App.$super.constructor.call(this, opts);
+		BaseApp.call(this);
 
-		var model = isServer ? new Model() : Rift.dump.deserialize(window._modelData);
-
-		baseViewProto.model = model;
-		baseViewProto.app = this;
-
-		this.model = model;
-		this.view = new View({ block: this.viewBlock });
+		this._init(
+			isServer ? Model : window._modelData,
+			View,
+			isServer ? null : opts.viewBlock,
+			viewState,
+			routes,
+			opts.path
+		);
 	}
 });
 

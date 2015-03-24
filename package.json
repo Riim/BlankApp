@@ -1,6 +1,6 @@
 {
   "name": "blank-app",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,12 +12,12 @@
     "express": "^4.9.7",
     "flat-glob": "0.0.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.13.0"
+    "riftjs": "^0.18.0"
   },
   "devDependencies": {
     "browserify": "^8.0.3",
     "browserify-html-bindify": "^0.7.3",
-    "browserify-rift-template": "^1.4.1",
+    "browserify-rift-template": "^1.6.0",
     "browserify-trim": "^1.0.1",
     "event-stream": "^3.1.7",
     "gulp": "^3.8.8",
@@ -34,7 +34,7 @@
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^0.6.6",
     "gulp-remember": "^0.2.1",
-    "gulp-rift-template": "^0.4.0",
+    "gulp-rift-template": "^1.0.0",
     "gulp-trim": "^1.0.1",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",

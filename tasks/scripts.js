@@ -34,8 +34,8 @@ gulp.task('scripts-bundle', function() {
 
 	if (!cache.bundler) {
 		bundler
-			.transform(browserifyTrim(['.rft']))
-			.transform(browserifyHTMLBindify(['.rft'], {
+			.transform(browserifyTrim(['.rtt']))
+			.transform(browserifyHTMLBindify(['.rtt'], {
 				attrBindName: 'rt-bind',
 				skipAttributes: ['rt-options']
 			}))

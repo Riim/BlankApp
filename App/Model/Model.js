@@ -1,8 +1,8 @@
 
 var Rift = require('riftjs');
 
-var Model = Rift.BaseModel.subclass({
-	__class: 'Model'
+var Model = Rift.BaseModel.extend('Model', {
+	//
 });
 
 module.exports = Model;

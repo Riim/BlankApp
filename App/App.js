@@ -18,6 +18,7 @@ var App = BaseApp.extend({
 			View,
 			isServer ? null : opts.viewBlock,
 			viewState,
+			isServer ? null : window._viewStateData,
 			routes,
 			opts.path
 		);

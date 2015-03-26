@@ -14,6 +14,7 @@ var browserifyTrim = require('browserify-trim');
 var browserifyHTMLBindify = require('browserify-html-bindify');
 var browserifyRiftTemplate = require('browserify-rift-template');
 
+var server = require('./server');
 var helpers = require('./helpers');
 
 var globalScripts = [
@@ -50,7 +51,11 @@ gulp.task('scripts-bundle', function() {
 		bundler.add(path.join(__dirname, '../App/clientApp/clientApp.js'));
 
 		if (argv.dev) {
-			bundler.on('update', rebundle);
+			bundler.on('update', function() {
+				rebundle().on('end', function() {
+					server.restart();
+				});
+			});
 		}
 
 		cache.bundler = bundler;

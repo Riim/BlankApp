@@ -9,6 +9,7 @@ var Rift = require('riftjs');
 var App = require('../App');
 
 var resetUIDCounter = Rift.uid.resetCounter;
+var toString = Rift.value.toString;
 var serialize = Rift.dump.serialize;
 
 glob.sync([path.join(__dirname, '../View/*/*.js')]).forEach(function(file) {
@@ -29,7 +30,8 @@ server.get(/^(?:\/[^\/]+)*\/[^.]*$/, function(req, res) {
 	});
 
 	app.view.render(function(appHTML) {
-		appHTML += '<script>var _modelData=' + serialize(app.model) + ';</script>';
+		appHTML += '<script>var _modelData=' + serialize(app.model) + ',_viewStateData=' +
+			toString(app.viewState.serializeData()) + ';</script>';
 
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;

@@ -2,23 +2,26 @@
 var argv = require('yargs').argv;
 var runSequence = require('run-sequence');
 var gulp = require('gulp');
+var server = require('./tasks/server');
 
 require('require-dir')('./tasks');
 
-gulp.task('logic', function(cb) {
-	runSequence('templates', 'scripts', cb);
+gulp.task('js', function(done) {
+	runSequence('templates', 'scripts', done);
 });
 
-gulp.task('view', function(cb) {
-	runSequence(/*'images', */'styles', cb);
+gulp.task('view', function(done) {
+	runSequence(/*'images', */'styles', done);
 });
 
-gulp.task('server', function() {
-	require('./App/serverApp/serverApp');
-});
-
-gulp.task('default', ['logic', 'view'], function() {
+gulp.task('build', ['js', 'view'], function() {
 	if (argv.dev) {
-		gulp.start('server');
+		server.restart();
 	}
+});
+
+gulp.task('default', ['build']);
+
+process.on('exit', function() {
+	server.kill();
 });

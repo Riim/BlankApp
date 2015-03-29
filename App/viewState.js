@@ -1,7 +1,5 @@
 
-var Rift = require('riftjs');
-
-var $prop = Rift.$prop;
+var rt = require('riftjs');
 
 var viewState = {
 	//

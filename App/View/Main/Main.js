@@ -1,7 +1,7 @@
 
-var Rift = require('riftjs');
+var rt = require('riftjs');
 
-var Main = Rift.BaseView.extend('View.Main', {
+var Main = rt.BaseView.extend('View.Main', {
 	//
 });
 

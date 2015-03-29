@@ -1,13 +1,13 @@
 
-var Rift = require('riftjs');
+var rt = require('riftjs');
 
 var Model = require('./Model/Model');
 var View = require('./View/View');
 var viewState = require('./viewState');
 var routes = require('./routes');
 
-var isServer = Rift.isServer;
-var BaseApp = Rift.BaseApp;
+var isServer = rt.isServer;
+var BaseApp = rt.BaseApp;
 
 var App = BaseApp.extend({
 	constructor: function(opts) {

@@ -4,13 +4,13 @@ var fs = require('fs');
 
 var glob = require('flat-glob');
 var express = require('express');
-var Rift = require('riftjs');
+var rt = require('riftjs');
 
 var App = require('../App');
 
-var resetUIDCounter = Rift.uid.resetCounter;
-var toString = Rift.value.toString;
-var serialize = Rift.dump.serialize;
+var resetUIDCounter = rt.uid.resetCounter;
+var toString = rt.value.toString;
+var serialize = rt.dump.serialize;
 
 glob.sync([path.join(__dirname, '../View/*/*.js')]).forEach(function(file) {
 	require(file);

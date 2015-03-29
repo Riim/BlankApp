@@ -19,7 +19,8 @@
 	},
 	globals: {
 		$: true,
-		Rift: true
+		Rift: true,
+		rt: true
 	},
 	env: {
 		node: true,

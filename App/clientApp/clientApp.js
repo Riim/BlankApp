@@ -1,5 +1,5 @@
 
-var Rift = require('riftjs');
+var rt = require('riftjs');
 
 var App = require('../App');
 

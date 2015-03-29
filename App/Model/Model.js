@@ -1,7 +1,7 @@
 
-var Rift = require('riftjs');
+var rt = require('riftjs');
 
-var Model = Rift.BaseModel.extend('Model', {
+var Model = rt.BaseModel.extend('Model', {
 	//
 });
 

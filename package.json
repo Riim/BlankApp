@@ -1,6 +1,6 @@
 {
   "name": "blank-app",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "express": "^4.9.7",
     "flat-glob": "0.0.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.20.4"
+    "riftjs": "^0.21.0"
   },
   "devDependencies": {
     "browserify": "^8.0.3",

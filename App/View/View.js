@@ -4,12 +4,21 @@ var RiftTemplate = require('rift-template-runtime');
 
 var templates = require('../../build/private/templates');
 
+var classes = rt.Class.classes;
 var wrapTemplate = RiftTemplate.wrap;
+
+var hasOwn = Object.prototype.hasOwnProperty;
 
 Object.assign(RiftTemplate.defaults, rt.template.defaults);
 
-Object.keys(templates).forEach(function(name) {
-	this[name] = wrapTemplate(templates[name]);
-}, rt.template.templates);
+for (var name in templates) {
+	if (hasOwn.call(classes, name)) {
+		var proto = classes[name].prototype;
 
-module.exports = require('./Main/Main');
+		if (!hasOwn.call(proto, 'template')) {
+			proto.template = wrapTemplate(templates[name]);
+		}
+	}
+}
+
+module.exports = require('./AppView/AppView');

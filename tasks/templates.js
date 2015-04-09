@@ -13,7 +13,8 @@ gulp.task('templates-bundle', function() {
 		.pipe($.trim())
 		.pipe($.htmlBindify({
 			attrBindName: 'rt-bind',
-			skipAttributes: ['rt-options']
+			skipAttributes: ['rt-options'],
+			outputDelimiters: ['{{,\'\'+this.', '}}']
 		}))
 		.pipe($.riftTemplate({ namespace: 'exports' }))
 		.pipe($.remember('scripts-bundle-templates'))

@@ -38,7 +38,8 @@ gulp.task('scripts-bundle', function() {
 			.transform(browserifyTrim(['.rtt']))
 			.transform(browserifyHTMLBindify(['.rtt'], {
 				attrBindName: 'rt-bind',
-				skipAttributes: ['rt-options']
+				skipAttributes: ['rt-options'],
+				outputDelimiters: ['{{,\'\'+this.', '}}']
 			}))
 			.transform(browserifyRiftTemplate);
 

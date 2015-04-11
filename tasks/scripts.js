@@ -98,7 +98,7 @@ gulp.task('scripts', ['scripts-bundle'], function() {
 				});
 			});
 
-		function onFileAddOrUnlink() {
+		function onAddOrUnlink() {
 			bundler.close();
 			bundler = null;
 
@@ -108,7 +108,7 @@ gulp.task('scripts', ['scripts-bundle'], function() {
 		}
 
 		chokidar.watch('./App/View/*/*.js', { ignoreInitial: true })
-			.on('add', onFileAddOrUnlink)
-			.on('unlink', onFileAddOrUnlink);
+			.on('add', onAddOrUnlink)
+			.on('unlink', onAddOrUnlink);
 	}
 });

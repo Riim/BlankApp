@@ -1,6 +1,6 @@
 {
   "name": "blank-app",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.9.7",
-    "flat-glob": "0.0.1",
     "rift-template-runtime": "^1.2.0",
     "riftjs": "^0.23.0"
   },
@@ -19,7 +18,9 @@
     "browserify-html-bindify": "^0.8.0",
     "browserify-rift-template": "^2.0.0",
     "browserify-trim": "^1.0.1",
+    "chokidar": "^1.0.1",
     "event-stream": "^3.1.7",
+    "glob": "^5.0.5",
     "gulp": "^3.8.8",
     "gulp-autoprefixer": "^1.0.0",
     "gulp-base64": "^0.1.2",

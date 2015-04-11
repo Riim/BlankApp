@@ -1,5 +1,5 @@
 
-var rt = require('riftjs');
+// var rt = require('riftjs');
 
 var viewState = {
 	//

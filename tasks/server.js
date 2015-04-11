@@ -1,6 +1,6 @@
 
-var childProcess = require('child_process');
-var spawn = childProcess.spawn;
+var spawn = require('child_process').spawn;
+
 var server = null;
 
 function restartServer(cb) {

@@ -2,14 +2,23 @@
 var path = require('path');
 var fs = require('fs');
 
-var glob = require('flat-glob');
+var glob = require('glob');
 var express = require('express');
 var rt = require('riftjs');
 
+var gulpBuild = require('../../tasks/build');
+var gulpHelpers = require('../../tasks/helpers');
+
 // не ставить после `require('../App')`
-glob.sync([path.join(__dirname, '../View/*/*.js')]).forEach(function(file) {
-	require(file);
-});
+[].concat(
+	gulpBuild.riftModules
+		.map(function(module) { return module.js; }),
+	glob.sync(path.join(__dirname, '../View/*/*.js'))
+		.filter(gulpHelpers.isRootFile)
+)
+	.forEach(function(file) {
+		require(file);
+	});
 
 var App = require('../App');
 

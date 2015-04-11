@@ -2,7 +2,8 @@
 var path = require('path');
 
 var argv = require('yargs').argv;
-var glob = require('flat-glob');
+var glob = require('glob');
+var chokidar = require('chokidar');
 var es = require('event-stream');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -14,75 +15,100 @@ var browserifyTrim = require('browserify-trim');
 var browserifyHTMLBindify = require('browserify-html-bindify');
 var browserifyRiftTemplate = require('browserify-rift-template');
 
-var server = require('./server');
 var helpers = require('./helpers');
+var build = require('./build');
+var server = require('./server');
 
-var globalScripts = [
-	'bower_components/jquery/dist/jquery.js',
-	'bower_components/jquery-mods/jquery.mods.js'
+var libs = [
+	'./bower_components/jquery/dist/jquery.js',
+	'./bower_components/jquery-mods/jquery.mods.js'
 ];
 
-var cache = {};
+var bundler = null;
 
-gulp.task('scripts-bundle', function() {
-	var bundler;
+function bundle() {
+	var bndlr;
 
 	if (argv.dev) {
-		bundler = cache.bundler || watchify(browserify({ cache: {}, packageCache: {} }));
+		bndlr = bundler || watchify(browserify({ cache: {}, packageCache: {} }));
 	} else {
-		bundler = browserify();
+		bndlr = browserify();
 	}
 
-	if (!cache.bundler) {
-		bundler
+	if (!bundler) {
+		bndlr
 			.transform(browserifyTrim(['.rtt']))
 			.transform(browserifyHTMLBindify(['.rtt'], {
 				attrBindName: 'rt-bind',
 				skipAttributes: ['rt-options'],
-				outputDelimiters: ['{{,\'\'+this.', '}}']
+				outputDelimiters: ['{{,\'\'+_.', '}}']
 			}))
 			.transform(browserifyRiftTemplate);
 
-		glob.sync(['./App/View/*/*.js'])
-			.filter(helpers.isRootFile)
+		[].concat(
+			build.riftModules
+				.map(function(module) { return module.js; }),
+			glob.sync(path.join(__dirname, '../App/View/*/*.js'))
+				.filter(helpers.isRootFile)
+		)
 			.forEach(function(file) {
-				bundler.add(path.join(__dirname, '..', file));
+				bndlr.add(file);
 			});
 
-		bundler.add(path.join(__dirname, '../App/clientApp/clientApp.js'));
+		bndlr.add(path.join(__dirname, '../App/clientApp/clientApp.js'));
 
 		if (argv.dev) {
-			bundler.on('update', function() {
-				rebundle().on('end', function() {
+			bndlr.on('update', function() {
+				rebundle().once('end', function() {
 					server.restart();
 				});
 			});
 		}
 
-		cache.bundler = bundler;
-	}
-
-	function rebundle() {
-		return es.concat(
-			gulp.src(globalScripts)
-				.pipe($.concat('globalScripts.js')),
-
-			bundler.bundle()
-				.on('error', helpers.browserifyErrorHandler)
-				.pipe(source('app.js'))
-				.pipe(buffer())
-		)
-			.pipe($.order(['globalScripts.js', 'app.js']))
-			.pipe($.concat('app.js'))
-			.pipe(argv.release ? $.uglify() : $.util.noop())
-			.pipe(gulp.dest('build/public/scripts'));
+		bundler = bndlr;
 	}
 
 	return rebundle();
-});
+}
+
+function rebundle() {
+	return es.concat(
+		gulp.src(libs)
+			.pipe($.concat('scripts.js')),
+
+		bundler.bundle()
+			.on('error', helpers.browserifyErrorHandler)
+			.pipe(source('app.js'))
+			.pipe(buffer())
+	)
+		.pipe($.order(['scripts.js', 'app.js']))
+		.pipe($.concat('app.js'))
+		.pipe(argv.release ? $.uglify() : $.util.noop())
+		.pipe(gulp.dest('./build/public/scripts'));
+}
+
+gulp.task('scripts-bundle', bundle);
 
 gulp.task('scripts', ['scripts-bundle'], function() {
 	if (argv.dev) {
-		gulp.watch(globalScripts, ['scripts-bundle']);
+		chokidar.watch(libs, { ignoreInitial: true })
+			.on('all', function() {
+				rebundle().once('end', function() {
+					server.restart();
+				});
+			});
+
+		function onFileAddOrUnlink() {
+			bundler.close();
+			bundler = null;
+
+			bundle().once('end', function() {
+				server.restart();
+			});
+		}
+
+		chokidar.watch('./App/View/*/*.js', { ignoreInitial: true })
+			.on('add', onFileAddOrUnlink)
+			.on('unlink', onFileAddOrUnlink);
 	}
 });

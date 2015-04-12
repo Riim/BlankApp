@@ -10,17 +10,17 @@ var isServer = rt.isServer;
 var BaseApp = rt.BaseApp;
 
 var App = BaseApp.extend({
-	constructor: function(opts) {
+	constructor: function(params) {
 		BaseApp.call(this);
 
 		this._init(
 			isServer ? Model : window._modelData,
 			View,
-			isServer ? null : opts.viewBlock,
+			isServer ? null : params.viewBlock,
 			viewState,
 			isServer ? null : window._viewStateData,
 			routes,
-			opts.path
+			params.path
 		);
 	}
 });

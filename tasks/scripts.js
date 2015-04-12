@@ -40,7 +40,7 @@ function bundle() {
 			.transform(browserifyTrim(['.rtt']))
 			.transform(browserifyHTMLBindify(['.rtt'], {
 				attrBindName: 'rt-bind',
-				skipAttributes: ['rt-options'],
+				skipAttributes: ['rt-d'],
 				outputDelimiters: ['{{,\'\'+_.', '}}']
 			}))
 			.transform(browserifyRiftTemplate);

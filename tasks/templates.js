@@ -20,7 +20,7 @@ function bundle() {
 		.pipe($.trim())
 		.pipe($.htmlBindify({
 			attrBindName: 'rt-bind',
-			skipAttributes: ['rt-options'],
+			skipAttributes: ['rt-d'],
 			outputDelimiters: ['{{,\'\'+_.', '}}']
 		}))
 		.pipe($.riftTemplate({ namespace: 'exports' }))

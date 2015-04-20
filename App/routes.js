@@ -7,7 +7,7 @@ var routes = [
 	{
 		path: '/*',
 		callback: function(path) {
-			console.log(path);
+			console.log('Not found path: "' + path + '"');
 			this.router.route('/404');
 		}
 	}

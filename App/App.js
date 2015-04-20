@@ -14,13 +14,13 @@ var App = BaseApp.extend({
 		BaseApp.call(this);
 
 		this._init(
-			isServer ? Model : window._modelData,
+			isServer ? Model : window._rt_modelData,
 			View,
 			isServer ? null : params.viewBlock,
 			viewState,
-			isServer ? null : window._viewStateData,
+			isServer ? null : window._rt_viewStateData,
 			routes,
-			params.path
+			isServer ? params.path : window._rt_path
 		);
 	}
 });

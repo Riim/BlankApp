@@ -9,7 +9,6 @@ var rt = require('riftjs');
 var gulpBuild = require('../../tasks/build');
 var gulpHelpers = require('../../tasks/helpers');
 
-// не ставить после `require('../App')`
 [].concat(
 	gulpBuild.riftModules
 		.map(function(module) { return module.js; }),
@@ -22,7 +21,6 @@ var gulpHelpers = require('../../tasks/helpers');
 
 var App = require('../App');
 
-var resetUIDCounter = rt.uid.resetCounter;
 var toString = rt.value.toString;
 var serialize = rt.dump.serialize;
 
@@ -33,15 +31,13 @@ server.use(express.static(path.join(__dirname, '../../build/public')));
 var html = fs.readFileSync(__dirname + '/index.html', 'utf8');
 
 server.get(/^(?:\/[^\/]+)*\/[^.]*$/, function(req, res) {
-	resetUIDCounter();
-
 	var app = new App({
 		path: req.path
 	});
 
 	app.view.render(function(appHTML) {
-		appHTML += '<script>var _modelData=' + serialize(app.model) + ',_viewStateData=' +
-			toString(app.viewState.serializeData()) + ';</script>';
+		appHTML += '<script>var _rt_modelData=' + serialize(app.model) + ',_rt_viewStateData=' +
+			toString(app.viewState.serializeData()) + ',_rt_path=' + toString(app.router.currentPath) + ';</script>';
 
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;

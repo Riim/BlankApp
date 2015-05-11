@@ -50,10 +50,9 @@ function bundle() {
 				.map(function(module) { return module.js; }),
 			glob.sync(path.join(__dirname, '../App/View/*/*.js'))
 				.filter(helpers.isRootFile)
-		)
-			.forEach(function(file) {
-				bndlr.add(file);
-			});
+		).forEach(function(file) {
+			bndlr.require(file);
+		});
 
 		bndlr.add(path.join(__dirname, '../App/clientApp/clientApp.js'));
 

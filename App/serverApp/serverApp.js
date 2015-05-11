@@ -42,6 +42,8 @@ server.get(/^(?:\/[^\/]+)*\/[^.]*$/, function(req, res) {
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;
 		}));
+
+		app.dispose();
 	});
 });
 

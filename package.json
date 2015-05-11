@@ -1,10 +1,14 @@
 {
   "name": "blank-app",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Riim/BlankApp.git"
   },
   "author": "Dmitry Vibe",
   "license": "MIT",

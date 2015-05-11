@@ -17,8 +17,8 @@ function browserifyErrorHandler(err) {
 		'\n' + err.toString(),
 		'\n' + gutil.colors.red('--------')
 	);
+
 	notifier.notify({ title: err.name, message: err.message });
-	this.end();
 }
 
 exports.browserifyErrorHandler = browserifyErrorHandler;

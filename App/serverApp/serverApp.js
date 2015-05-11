@@ -14,10 +14,9 @@ var gulpHelpers = require('../../tasks/helpers');
 		.map(function(module) { return module.js; }),
 	glob.sync(path.join(__dirname, '../View/*/*.js'))
 		.filter(gulpHelpers.isRootFile)
-)
-	.forEach(function(file) {
-		require(file);
-	});
+).forEach(function(file) {
+	require(file);
+});
 
 var App = require('../App');
 

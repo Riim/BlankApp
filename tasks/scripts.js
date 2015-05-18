@@ -51,7 +51,7 @@ function bundle() {
 			glob.sync(path.join(__dirname, '../App/View/*/*.js'))
 				.filter(helpers.isRootFile)
 		).forEach(function(file) {
-			bndlr.require(file);
+			bndlr.add(file);
 		});
 
 		bndlr.add(path.join(__dirname, '../App/clientApp/clientApp.js'));

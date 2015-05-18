@@ -20,7 +20,7 @@ var gulpHelpers = require('../../tasks/helpers');
 
 var App = require('../App');
 
-var toString = rt.value.toString;
+var stringify = rt.value.stringify;
 var serialize = rt.dump.serialize;
 
 var server = express();
@@ -36,7 +36,7 @@ server.get(/^(?:\/[^\/]+)*\/[^.]*$/, function(req, res) {
 
 	app.view.render(function(appHTML) {
 		appHTML += '<script>var _rt_modelData=' + serialize(app.model) + ',_rt_viewStateData=' +
-			toString(app.viewState.serializeData()) + ',_rt_path=' + toString(app.router.currentPath) + ';</script>';
+			stringify(app.viewState.serializeData()) + ',_rt_path=' + stringify(app.router.currentPath) + ';</script>';
 
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;

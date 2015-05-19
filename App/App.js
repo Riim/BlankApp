@@ -1,4 +1,3 @@
-
 var rt = require('riftjs');
 
 var Model = require('./Model/Model');

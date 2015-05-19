@@ -1,4 +1,3 @@
-
 var rt = require('riftjs');
 var RiftTemplate = require('rift-template-runtime');
 

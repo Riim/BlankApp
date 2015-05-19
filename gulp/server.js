@@ -1,19 +1,24 @@
-
 var spawn = require('child_process').spawn;
 
 var server = null;
 
-function restartServer(cb) {
-	kill(function() {
-		server = spawn('node', ['./App/serverApp/serverApp'], { stdio: 'inherit' });
+function startServer(cb) {
+	if (server) {
+		throw new TypeError('Server is alreasy started');
+	}
 
-		if (cb) {
-			cb();
-		}
-	});
+	server = spawn('node', ['App/serverApp/serverApp'], { stdio: 'inherit' });
+
+	if (cb) {
+		cb();
+	}
 }
 
-exports.restart = restartServer;
+function restartServer(cb) {
+	kill(function() {
+		startServer(cb);
+	});
+}
 
 function kill(cb) {
 	if (server) {
@@ -33,4 +38,6 @@ function kill(cb) {
 	}
 }
 
+exports.start = startServer;
+exports.restart = restartServer;
 exports.kill = kill;

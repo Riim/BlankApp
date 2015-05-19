@@ -1,4 +1,3 @@
-
 var path = require('path');
 var fs = require('fs');
 
@@ -6,11 +5,11 @@ var glob = require('glob');
 var express = require('express');
 var rt = require('riftjs');
 
-var gulpBuild = require('../../tasks/build');
-var gulpHelpers = require('../../tasks/helpers');
+var gulpConfig = require('../../gulp/config');
+var gulpHelpers = require('../../gulp/helpers');
 
 [].concat(
-	gulpBuild.riftModules
+	gulpConfig.scripts.externalModules
 		.map(function(module) { return module.js; }),
 	glob.sync(path.join(__dirname, '../View/*/*.js'))
 		.filter(gulpHelpers.isRootFile)

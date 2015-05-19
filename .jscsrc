@@ -67,7 +67,6 @@
 		"!=="
 	],
 	"disallowImplicitTypeConversion": ["binary", "string"],
-	"requireCamelCaseOrUpperCaseIdentifiers": true,
 	"disallowKeywords": ["with"],
 	"disallowMultipleLineStrings": true,
 	"disallowMultipleLineBreaks": true,

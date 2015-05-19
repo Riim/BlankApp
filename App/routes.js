@@ -1,4 +1,3 @@
-
 var routes = [
 	'/todos',
 	'/todo/{todoId}(?todoEdit /edit)',

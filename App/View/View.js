@@ -1,7 +1,7 @@
 var rt = require('riftjs');
 var RiftTemplate = require('rift-template-runtime');
 
-var templates = require('../../build/private/templates');
+var templates = require('../../dist/private/templates');
 
 var classes = rt.Class.classes;
 var wrapTemplate = RiftTemplate.wrap;

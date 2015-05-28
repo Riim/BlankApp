@@ -24,7 +24,7 @@ function bundle() {
 		.pipe($.riftTemplate({ namespace: 'exports' }))
 		.pipe($.remember('scripts-bundle-templates'))
 		.pipe($.concat('templates.js'))
-		.pipe(gulp.dest('build/private'));
+		.pipe(gulp.dest('dist/private'));
 }
 
 gulp.task('templates-bundle', bundle);

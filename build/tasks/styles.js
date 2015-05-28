@@ -1,3 +1,5 @@
+var path = require('path');
+
 var glob = require('glob');
 var chokidar = require('chokidar');
 var gulp = require('gulp');
@@ -7,7 +9,7 @@ var config = require('../config');
 var helpers = require('../helpers');
 
 function bundle() {
-	var outputStyleDir = path.join(process.cwd(), 'build/public/styles');
+	var outputStyleDir = path.join(process.cwd(), 'dist/public/styles');
 
 	return gulp.src(config.styles.globals.concat(
 		config.scripts.externalModules
@@ -27,7 +29,7 @@ function bundle() {
 		}))
 		.pipe($.concat('app.css'))
 		.pipe($.util.env.release ? $.csso() : $.util.noop())
-		.pipe(gulp.dest('build/public/styles'));
+		.pipe(gulp.dest('dist/public/styles'));
 }
 
 gulp.task('styles-bundle', bundle);

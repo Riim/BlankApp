@@ -5,14 +5,14 @@ var glob = require('glob');
 var express = require('express');
 var rt = require('riftjs');
 
-var gulpConfig = require('../../gulp/config');
-var gulpHelpers = require('../../gulp/helpers');
+var buildConfig = require('../../build/config');
+var buildHelpers = require('../../build/helpers');
 
 [].concat(
-	gulpConfig.scripts.externalModules
+	buildConfig.scripts.externalModules
 		.map(function(module) { return module.js; }),
 	glob.sync(path.join(__dirname, '../View/*/*.js'))
-		.filter(gulpHelpers.isRootFile)
+		.filter(buildHelpers.isRootFile)
 ).forEach(function(file) {
 	require(file);
 });
@@ -24,7 +24,7 @@ var serialize = rt.dump.serialize;
 
 var server = express();
 
-server.use(express.static(path.join(__dirname, '../../build/public')));
+server.use(express.static(path.join(__dirname, '../../dist/public')));
 
 var html = fs.readFileSync(__dirname + '/index.html', 'utf8');
 

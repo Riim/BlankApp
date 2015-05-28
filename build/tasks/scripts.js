@@ -76,7 +76,7 @@ function rebundle() {
 		.pipe($.order(['globals.js', 'app.js']))
 		.pipe($.concat('app.js'))
 		.pipe($.util.env.release ? $.uglify() : $.util.noop())
-		.pipe(gulp.dest('build/public/scripts'));
+		.pipe(gulp.dest('dist/public/scripts'));
 }
 
 gulp.task('scripts-bundle', ['templates'], bundle);

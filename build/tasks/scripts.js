@@ -23,9 +23,16 @@ function bundle() {
 	var bndlr;
 
 	if ($.util.env.dev) {
-		bndlr = bundler || watchify(browserify({ cache: {}, packageCache: {} }));
+		bndlr = bundler || watchify(browserify({
+			cache: {},
+			packageCache: {}
+		}, {
+			detectGlobals: false
+		}));
 	} else {
-		bndlr = browserify();
+		bndlr = browserify(null, {
+			detectGlobals: false
+		});
 	}
 
 	if (!bundler) {

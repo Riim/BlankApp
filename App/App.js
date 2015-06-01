@@ -12,15 +12,19 @@ var App = BaseApp.extend({
 	constructor: function(params) {
 		BaseApp.call(this);
 
-		this._init(
-			isServer ? Model : window._rt_modelData,
-			View,
-			isServer ? null : params.viewBlock,
-			viewState,
-			isServer ? null : window._rt_viewStateData,
-			routes,
-			isServer ? params.path : window._rt_path
-		);
+		if (isServer) {
+			this._init(Model, View, null, viewState, null, routes, params.path);
+		} else {
+			this._init(
+				window._rt_modelData,
+				View,
+				params.viewBlock,
+				viewState,
+				window._rt_viewStateData,
+				routes,
+				window._rt_path
+			);
+		}
 	}
 });
 

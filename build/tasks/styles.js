@@ -21,7 +21,7 @@ function bundle() {
 		.pipe($.less())
 		.pipe($.autoprefixer('last 2 version', '> 1%'))
 		.pipe($.reworkUrls(function(url, filePath) {
-			if (url.slice(0, 2) == './') {
+			if (url[0] == '.') {
 				return path.join(path.relative(outputStyleDir, path.dirname(filePath)), url);
 			}
 

@@ -1,43 +1,59 @@
+var EventEmitter = require('events').EventEmitter;
 var spawn = require('child_process').spawn;
 
-var server = null;
+var server;
+var restarting;
 
-function startServer(cb) {
-	if (server) {
-		throw new TypeError('Server is alreasy started');
+function start(cb) {
+	if (!server) {
+		server = spawn('node', ['App/serverApp'], { stdio: 'inherit' });
 	}
-
-	server = spawn('node', ['App/serverApp/serverApp'], { stdio: 'inherit' });
 
 	if (cb) {
 		cb();
 	}
 }
 
-function restartServer(cb) {
-	kill(function() {
-		startServer(cb);
-	});
+function kill(cb) {
+	function closed() {
+		server = null;
+
+		if (cb) {
+			cb();
+		}
+	}
+
+	if (server) {
+		server.once('close', closed);
+		server.kill();
+	} else {
+		closed();
+	}
 }
 
-function kill(cb) {
-	if (server) {
-		server.once('close', function() {
-			server = null;
+function restart(cb) {
+	if (restarting) {
+		if (cb) {
+			restarting.on('done', cb);
+		}
+
+		return;
+	}
+
+	restarting = new EventEmitter();
+
+	kill(function() {
+		start(function() {
+			restarting.emit('done');
+			restarting = null;
 
 			if (cb) {
 				cb();
 			}
 		});
-
-		server.kill();
-	} else {
-		if (cb) {
-			cb();
-		}
-	}
+	});
 }
 
-exports.start = startServer;
-exports.restart = restartServer;
+exports.start = start;
 exports.kill = kill;
+exports.restart = restart;

@@ -1,39 +1,48 @@
-var glob = require('glob');
 var chokidar = require('chokidar');
+var notifier = require('node-notifier');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 var config = require('../config');
-var helpers = require('../helpers');
 
 function bundle() {
+
 	return gulp.src([].concat(
-		config.scripts.externalModules
+		config.externalModules
 			.filter(function(module) { return module.template; })
 			.map(function(module) { return module.template; }),
-		glob.sync('App/View/*/*.rtt').filter(helpers.isRootFile)
+		config.src + '/View/modules/*/index.rtt'
 	))
-		.pipe($.plumber(helpers.plumberErrorHandler))
+		.pipe($.plumber(function(err) {
+			$.util.log(err.toString(), '\n' + $.util.colors.red('--------'));
+
+			notifier.notify({
+				title: err.name,
+				message: err.message
+			});
+		}))
 		.pipe($.cached('scripts-bundle-templates'))
 		.pipe($.trim())
-		.pipe($.htmlBindify({
+		.pipe($.htmlBindingTransform({
 			attrBindName: 'rt-bind',
-			skipAttributes: ['rt-d'],
-			outputDelimiters: ['{{,\'\'+_.', '}}']
+			outputDelimiters: ['{{,\'\'+_.', '}}'],
+			root: '_'
 		}))
-		.pipe($.riftTemplate({ namespace: 'exports' }))
+		.pipe($.riftTemplate({
+			computeKey: function(file) {
+				return file.match(/\/(\w+)\/\w+\.rtt$/)[1];
+			}
+		}))
 		.pipe($.remember('scripts-bundle-templates'))
 		.pipe($.concat('templates.js'))
-		.pipe(gulp.dest('dist/private'));
+		.pipe(gulp.dest(config.dist + '/private'));
 }
 
 gulp.task('templates-bundle', bundle);
 
 gulp.task('templates', ['templates-bundle'], function() {
 	if ($.util.env.dev) {
-		chokidar.watch(['bower_components/rift-*/**/*.rtt', 'App/View/**/*.rtt'], { ignoreInitial: true })
-			.on('all', function() {
-				bundle();
-			});
+		chokidar.watch(['bower_components/rift-*/**/*.rtt', config.src + '/View/**/*.rtt'], { ignoreInitial: true })
+			.on('all', bundle);
 	}
 });

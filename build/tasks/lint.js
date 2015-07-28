@@ -1,9 +1,10 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
+var config = require('../config');
+
 gulp.task('lint-js', function() {
-	return gulp.src('App/**/*.js')
-		.pipe($.jscs())
+	return gulp.src([config.src + '/**/*.js', 'build/**/*.js'])
 		.pipe($.eslint())
 		.pipe($.eslint.format());
 });

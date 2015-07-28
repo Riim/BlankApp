@@ -1,10 +1,10 @@
 var gulp = require('gulp');
-var gutil = require('gulp-util');
+var $ = require('gulp-load-plugins')();
 
 var server = require('../server');
 
-gulp.task('build', ['scripts', 'styles'], function() {
-	if (gutil.env.dev) {
+gulp.task('build', ['scripts', 'styles', 'fonts'], function() {
+	if ($.util.env.dev) {
 		server.start();
 	}
 });

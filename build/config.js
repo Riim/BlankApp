@@ -15,11 +15,11 @@ var config = {
 
 		var name = config.main ? path.basename(config.main, '.js') : 'index';
 
-		var template = path.join(dir, name + '.rtt');
-		var style = path.join(dir, name + '.less');
+		var template = dir + name + '.rtt';
+		var style = dir + name + '.less';
 
 		modules.push({
-			js: path.join(dir, name + '.js'),
+			js: dir + name + '.js',
 			template: fs.existsSync(template) ? template : undefined,
 			style: fs.existsSync(style) ? style : undefined
 		});

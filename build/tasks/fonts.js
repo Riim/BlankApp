@@ -4,16 +4,16 @@ var $ = require('gulp-load-plugins')();
 
 var config = require('../config');
 
-function bundle() {
+function prepare() {
 	return gulp.src(config.fonts.libs)
 		.pipe(gulp.dest(config.dist + '/public/font'));
 }
 
-gulp.task('fonts-bundle', bundle);
+gulp.task('fonts-prepare', prepare);
 
-gulp.task('fonts', ['fonts-bundle'], function() {
+gulp.task('fonts', ['fonts-prepare'], function() {
 	if ($.util.env.dev) {
 		chokidar.watch(config.fonts.libs, { ignoreInitial: true })
-			.on('all', bundle);
+			.on('all', prepare);
 	}
 });

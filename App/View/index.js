@@ -1,16 +1,19 @@
+import { defaults as templateDefaults, wrap as wrapTemplate } from 'rift-template-runtime';
 import rt from 'riftjs';
-import RiftTemplateRuntime from 'rift-template-runtime';
 
 import templates from '../../dist/private/templates';
+import { t, nt } from './l10n/getText';
 
 import App from './modules/App';
 
-let viewClasses = rt.viewClasses;
-let wrapTemplate = RiftTemplateRuntime.wrap;
-
 let hasOwn = Object.prototype.hasOwnProperty;
 
-rt.object.assign(RiftTemplateRuntime.defaults, rt.template.defaults);
+rt.object.assign(templateDefaults, rt.template.defaults);
+
+templateDefaults.helpers.t = t;
+templateDefaults.helpers.nt = nt;
+
+let viewClasses = rt.viewClasses;
 
 for (let name in templates) {
 	if (name in viewClasses) {
@@ -21,6 +24,9 @@ for (let name in templates) {
 		}
 	}
 }
+
+rt.BaseView.prototype.t = t;
+rt.BaseView.prototype.nt = nt;
 
 if (rt.isClient) {
 	$.fn.mods.setPattern('_{m}_{mv}');

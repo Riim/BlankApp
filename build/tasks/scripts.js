@@ -74,11 +74,19 @@ function bundle() {
 				};
 
 				$.util.log($.util.colors.red(err));
-				notifier.notify({ title: err.name, message: err.message });
+
+				notifier.notify({
+					title: err.name,
+					message: err.message
+				});
 			})
 			.on('end', function() {
 				if (error && error.timestamp + 100 < Date.now()) {
-					notifier.notify({ title: 'Ok', message: 'Ok' });
+					notifier.notify({
+						title: 'Ok',
+						message: 'Ok'
+					});
+
 					error = null;
 				}
 			})
@@ -91,7 +99,7 @@ function bundle() {
 		.pipe(gulp.dest(config.dist + '/public/js'));
 }
 
-gulp.task('scripts-bundle', ['templates'], bundle);
+gulp.task('scripts-bundle', ['templates', 'l10n'], bundle);
 
 function onAddUnlink() {
 	bundler.close();

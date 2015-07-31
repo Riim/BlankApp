@@ -21,9 +21,9 @@ var App = require('..');
 
 var server = express();
 
-server.use(express.static(path.join(__dirname, '../..', buildConfig.dist, 'public')));
+server.use(express.static(path.join(__dirname, '../../' + buildConfig.dist + '/public')));
 
-var html = fs.readFileSync(path.join(__dirname, '/index.html'), 'utf8');
+var html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 
 server.get(/^(?:\/[^\/]+)*\/$/, function(req, res) {
 	var app = new App({

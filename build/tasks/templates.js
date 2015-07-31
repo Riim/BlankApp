@@ -6,7 +6,6 @@ var $ = require('gulp-load-plugins')();
 var config = require('../config');
 
 function bundle() {
-
 	return gulp.src([].concat(
 		config.externalModules
 			.filter(function(module) { return module.template; })

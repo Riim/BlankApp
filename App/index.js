@@ -23,7 +23,7 @@ export default class App extends rt.BaseApp {
 	constructor(params) {
 		super();
 
-		if (rt.isServer) {
+		if (rt.env.isServer) {
 			this._init({
 				modelClass: Model,
 				viewClass: View,

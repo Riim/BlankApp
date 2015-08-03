@@ -1,4 +1,4 @@
-import { defaults as templateDefaults, wrap as wrapTemplate } from 'rift-template-runtime';
+import { defaults as templateRuntimeDefaults, wrap as wrapTemplate } from 'rift-template-runtime';
 import rt from 'riftjs';
 
 import templates from '../../dist/private/templates';
@@ -8,10 +8,10 @@ import App from './modules/App';
 
 let hasOwn = Object.prototype.hasOwnProperty;
 
-rt.object.assign(templateDefaults, rt.template.defaults);
+rt.object.assign(templateRuntimeDefaults, rt.templateRuntime.defaults);
 
-templateDefaults.helpers.t = t;
-templateDefaults.helpers.nt = nt;
+templateRuntimeDefaults.helpers.t = t;
+templateRuntimeDefaults.helpers.nt = nt;
 
 let viewClasses = rt.viewClasses;
 
@@ -28,7 +28,7 @@ for (let name in templates) {
 rt.BaseView.prototype.t = t;
 rt.BaseView.prototype.nt = nt;
 
-if (rt.isClient) {
+if (rt.env.isClient) {
 	$.fn.mods.setPattern('_{m}_{mv}');
 }
 

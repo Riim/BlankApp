@@ -21,7 +21,7 @@
     "babel": "^5.8.19",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.38.0"
+    "riftjs": "^0.39.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
@@ -38,7 +38,7 @@
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-csso": "^1.0.0",
-    "gulp-eslint": "^0.15.0",
+    "gulp-eslint": "^1.0.0",
     "gulp-html-binding-transform": "^1.1.0",
     "gulp-less": "^3.0.3",
     "gulp-load-plugins": "^1.0.0-rc.1",

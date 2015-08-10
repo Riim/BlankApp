@@ -21,7 +21,7 @@ export function getText(id, plural, view, params) {
 		text = id;
 	}
 
-	let data = Object.create(view);
+	let data = Object.create(view || null);
 
 	params.forEach((param, index) => {
 		data[index + 1] = param;

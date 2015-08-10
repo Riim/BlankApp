@@ -1,6 +1,6 @@
 {
   "name": "blank-app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/Riim/BlankApp",
   "dependencies": {
-    "babel": "^5.8.19",
+    "babel": "^5.8.21",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.39.0"
+    "riftjs": "^0.40.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
@@ -50,10 +50,10 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "html-bindify": "^1.1.0",
-    "merge-stream": "^0.1.8",
+    "merge-stream": "^1.0.0",
     "node-notifier": "^4.2.3",
     "require-dir": "^0.3.0",
-    "rift-gettext": "^0.1.4",
+    "rift-gettext": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.1"

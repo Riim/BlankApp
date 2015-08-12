@@ -21,7 +21,7 @@
     "babel": "^5.8.21",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.40.0"
+    "riftjs": "^0.41.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",

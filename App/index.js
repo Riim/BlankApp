@@ -3,18 +3,20 @@ import rt from 'riftjs';
 import Model from './Model';
 import View from './View';
 
-let viewStateFields = {
-	//
-};
-
-let routes = [
-	'/',
-	'/404',
+let nodes = [
+	{
+		name: 'root',
+		path: '/'
+	},
+	{
+		name: 'notFound',
+		path: '/404'
+	},
 	{
 		path: '/*',
 		callback: function(path) {
 			console.log('Not found path: "' + path + '"');
-			this.router.route('/404');
+			this.router.route('/404', false);
 		}
 	}
 ];
@@ -27,18 +29,15 @@ export default class App extends rt.BaseApp {
 			this._init({
 				modelClass: Model,
 				viewClass: View,
-				viewStateFields: viewStateFields,
-				routes: routes,
+				nodes: nodes,
 				path: params.path
 			});
 		} else {
 			this._init({
-				modelDataDump: window.__rt_modelDataDump__,
+				modelClass: Model,
 				viewClass: View,
 				viewBlock: params.viewBlock,
-				viewStateFields: viewStateFields,
-				viewStateDataDump: window.__rt_viewStateDataDump__,
-				routes: routes,
+				nodes: nodes,
 				path: window.__rt_path__
 			});
 		}

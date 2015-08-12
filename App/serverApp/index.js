@@ -31,9 +31,8 @@ server.get(/^(?:\/[^\/]+)*\/$/, function(req, res) {
 	});
 
 	app.view.render(function(appHTML) {
-		appHTML += '<script>var __rt_modelDataDump__=' + rt.dump.serialize(app.model) +
-			',__rt_viewStateDataDump__=' + app.viewState.serializeData() +
-			',__rt_path__=' + JSON.stringify(app.router.currentPath) + ';</script>';
+		appHTML += '<script>var __rt_proxyCacheDump__=\'' + rt.proxy.serializeCache().replace(/([\\'])/g, '\\$1') +
+			'\',__rt_path__=\'' + app.router.currentPath + '\';</script>';
 
 		res.send(html.replace('{{app}}', function() {
 			return appHTML;

@@ -21,7 +21,7 @@
     "babel": "^5.8.21",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.41.0"
+    "riftjs": "^0.41.2"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
@@ -53,7 +53,7 @@
     "merge-stream": "^1.0.0",
     "node-notifier": "^4.2.3",
     "require-dir": "^0.3.0",
-    "rift-gettext": "^0.1.5",
+    "rift-gettext": "^0.1.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.1"

@@ -1,4 +1,8 @@
 node_modules
 bower_components
 
-/dist
+/dist/private/templates.js
+/dist/private/localeSettings.json
+/dist/private/texts/*.mo
+/dist/private/texts/index.json
+/dist/public

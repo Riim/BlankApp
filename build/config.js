@@ -59,7 +59,13 @@ var config = {
 	},
 
 	babelify: {
-		ignore: /RiftJS/
+		ignore: /RiftJS/,
+
+		optional: [
+			'es7.classProperties',
+			'es7.decorators',
+			'es7.functionBind'
+		]
 	}
 };
 

@@ -15,7 +15,7 @@ function start(cb) {
 }
 
 function kill(cb) {
-	function closed() {
+	function killed() {
 		server = null;
 
 		if (cb) {
@@ -24,10 +24,10 @@ function kill(cb) {
 	}
 
 	if (server) {
-		server.once('close', closed);
+		server.once('close', killed);
 		server.kill();
 	} else {
-		closed();
+		killed();
 	}
 }
 

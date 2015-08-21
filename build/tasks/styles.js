@@ -14,6 +14,7 @@ function bundle() {
 		config.externalModules
 			.filter(function(module) { return module.style; })
 			.map(function(module) { return module.style; }),
+		config.dist + '/public/css/svgSprite.css',
 		config.src + '/View/index.css',
 		config.src + '/View/modules/*/index.css'
 	))
@@ -28,7 +29,7 @@ function bundle() {
 		.pipe(gulp.dest(config.dist + '/public/css'));
 }
 
-gulp.task('styles-bundle', bundle);
+gulp.task('styles-bundle', ['images'], bundle);
 
 gulp.task('styles', ['styles-bundle'], function() {
 	if ($.util.env.dev) {

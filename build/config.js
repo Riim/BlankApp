@@ -48,8 +48,12 @@ var config = {
 		outputName: 'app.css'
 	},
 
+	images: {
+		svg: ['assets/images/svg/*.svg']
+	},
+
 	fonts: {
-		libs: [
+		files: [
 			//
 		]
 	},

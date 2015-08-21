@@ -47,6 +47,7 @@
     "gulp-postcss": "^6.0.0",
     "gulp-remember": "^0.3.0",
     "gulp-rift-template": "^2.4.0",
+    "gulp-svg-sprite": "^1.2.9",
     "gulp-trim": "^1.0.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",

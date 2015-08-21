@@ -9,7 +9,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 var config = require('../config');
-var localeSettings = require('../localeSettings');
+var localeSettings = require('../../l10n/localeSettings');
 
 function mkdir(dir) {
 	if (!fs.existsSync(dir)) {
@@ -46,14 +46,14 @@ function generateTexts() {
 		sources[path.relative(cwd, file)] = fs.readFileSync(file, 'utf-8');
 	});
 
-	var poFile = path.join(dir, $.util.env.lang + '.po');
+	var existingPOFile = 'l10n/texts/' + $.util.env.lang + '.po';
 	var po = gettext.generate(sources, {
 		language: $.util.env.lang,
-		existingPO: fs.existsSync(poFile) ? fs.readFileSync(poFile, 'utf-8') : undefined,
+		existingPO: fs.existsSync(existingPOFile) ? fs.readFileSync(existingPOFile, 'utf-8') : undefined,
 		fnNames: ['t', 'nt']
 	});
 
-	fs.writeFileSync(poFile, po);
+	fs.writeFileSync(path.join(dir, $.util.env.lang + '.po'), po);
 
 	var poJSON = gettextParser.po.parse(po);
 	var translations = poJSON.translations[''];

@@ -1,0 +1,9 @@
+{{#shapes}}
+@define-mixin bg_{{name}} {
+	width: {{width.outer}}px;
+	height: {{height.outer}}px;
+	background: url('{{{sprite}}}') {{position.relative.xy}} no-repeat;
+	background-size: {{spriteWidth}}px {{spriteHeight}}px;
+}
+
+{{/shapes}}

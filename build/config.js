@@ -16,7 +16,7 @@ var config = {
 		var name = config.main ? path.basename(config.main, '.js') : 'index';
 
 		var template = dir + name + '.rtt';
-		var style = dir + name + '.less';
+		var style = dir + name + '.css';
 
 		modules.push({
 			js: dir + name + '.js',
@@ -43,7 +43,7 @@ var config = {
 			//
 		],
 
-		modules: src + '/View/modules/*/index.less',
+		modules: src + '/View/modules/*/index.css',
 
 		outputName: 'app.css'
 	},

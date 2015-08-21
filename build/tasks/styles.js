@@ -1,4 +1,8 @@
 var chokidar = require('chokidar');
+var postcssNested = require('postcss-nested');
+var postcssSimpleVars = require('postcss-simple-vars');
+var postcssMixins = require('postcss-mixins');
+var autoprefixer = require('autoprefixer');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
@@ -10,12 +14,16 @@ function bundle() {
 		config.externalModules
 			.filter(function(module) { return module.style; })
 			.map(function(module) { return module.style; }),
-		config.src + '/View/index.less',
-		config.src + '/View/modules/*/index.less'
+		config.src + '/View/index.css',
+		config.src + '/View/modules/*/index.css'
 	))
 		.pipe($.concat(config.styles.outputName))
-		.pipe($.less())
-		.pipe($.autoprefixer('last 2 version', '> 1%'))
+		.pipe($.postcss([
+			postcssNested,
+			postcssSimpleVars,
+			postcssMixins,
+			autoprefixer({ browsers: ['last 2 version', '> 1%'] })
+		]))
 		.pipe($.util.env.release ? $.csso() : $.util.noop())
 		.pipe(gulp.dest(config.dist + '/public/css'));
 }
@@ -26,8 +34,8 @@ gulp.task('styles', ['styles-bundle'], function() {
 	if ($.util.env.dev) {
 		chokidar.watch([].concat(
 			config.styles.libs,
-			'bower_components/rift-*/**/*.less',
-			config.src + '/View/**/*.less'
+			'bower_components/rift-*/**/*.css',
+			config.src + '/View/**/*.css'
 		), { ignoreInitial: true })
 			.on('all', bundle);
 	}

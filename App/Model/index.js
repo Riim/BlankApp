@@ -3,7 +3,7 @@ import User from './User';
 
 export default class Model extends rt.BaseModel {
 	@d.active viewer = new User({
-		firstName: 'Vasya',
-		lastName: 'Pupkin'
+		firstName: 'Matroskin',
+		lastName: 'Cat'
 	});
 }

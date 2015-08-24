@@ -1,7 +1,10 @@
 var chokidar = require('chokidar');
-var postcssNested = require('postcss-nested');
-var postcssSimpleVars = require('postcss-simple-vars');
+var postcssDefineProperty = require('postcss-define-property');
 var postcssMixins = require('postcss-mixins');
+var postcssSimpleVars = require('postcss-simple-vars');
+var postcssNested = require('postcss-nested');
+var postcssCalc = require('postcss-calc');
+var postcssFunctions = require('postcss-functions');
 var autoprefixer = require('autoprefixer');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
@@ -20,9 +23,16 @@ function bundle() {
 	))
 		.pipe($.concat(config.styles.outputName))
 		.pipe($.postcss([
-			postcssNested,
-			postcssSimpleVars,
+			postcssDefineProperty,
 			postcssMixins,
+			postcssSimpleVars,
+			postcssNested,
+			postcssCalc,
+			postcssFunctions({
+				functions: {
+					ceil: Math.ceil
+				}
+			}),
 			autoprefixer({ browsers: ['last 2 version', '> 1%'] })
 		]))
 		.pipe($.util.env.release ? $.csso() : $.util.noop())

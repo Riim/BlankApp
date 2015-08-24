@@ -1,9 +1,31 @@
-{{#shapes}}
-@define-mixin bg_{{name}} {
-	width: {{width.outer}}px;
-	height: {{height.outer}}px;
-	background: url('{{{sprite}}}') {{position.relative.xy}} no-repeat;
-	background-size: {{spriteWidth}}px {{spriteHeight}}px;
+{{#shapes}}@define-mixin bg_{{name}} $multiplier: 1 {
+	background: url('{{{spriteFile}}}') {{position.relative.xy}} no-repeat;
+	background-size: calc({{spriteWidth}} * $multiplier)px calc({{spriteHeight}} * $multiplier)px;
+}
+
+@define-mixin repeatableBg_{{name}} $multiplier: 1 {
+	background: url('{{{spriteFile}}}') {{position.relative.xy}};
+	background-size: calc({{spriteWidth}} * $multiplier)px calc({{spriteHeight}} * $multiplier)px;
+}
+
+@define-mixin bgWithSizes_{{name}} $multiplier: 1 {
+	width: ceil(calc({{width}} * $multiplier))px;
+	height: ceil(calc({{height}} * $multiplier))px;
+	@mixin bg_{{name}} $multiplier;
+}
+
+@define-mixin repeatableBgWithSizes_{{name}} $multiplier: 1 {
+	width: ceil(calc({{width}} * $multiplier))px;
+	height: ceil(calc({{height}} * $multiplier))px;
+	@mixin bg_{{name}} $multiplier;
+}
+
+@define-mixin bgWithAppliedWidth_{{name}} $width {
+	@mixin bgWithSizes_{{name}} calc($width / {{width}});
+}
+
+@define-mixin bgWithAppliedHeight_{{name}} $height {
+	@mixin bgWithSizes_{{name}} calc($height / {{height}});
 }
 
 {{/shapes}}

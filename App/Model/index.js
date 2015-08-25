@@ -1,9 +1,17 @@
-import { default as rt, d } from 'riftjs';
+import { default as rt, cell } from 'riftjs';
 import User from './User';
 
 export default class Model extends rt.BaseModel {
-	@d.active viewer = new User({
-		firstName: 'Matroskin',
-		lastName: 'Cat'
-	});
+	viewer = cell(null);
+
+	constructor() {
+		super();
+
+		this.viewer(new User({
+			data: {
+				firstName: 'Matroskin',
+				lastName: 'Cat'
+			}
+		}));
+	}
 }

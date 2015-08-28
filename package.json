@@ -18,16 +18,16 @@
   },
   "homepage": "https://github.com/Riim/BlankApp",
   "dependencies": {
-    "babel": "^5.8.21",
+    "babel": "^5.8.23",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.44.0"
+    "riftjs": "^0.44.4"
   },
   "devDependencies": {
     "autoprefixer": "^5.2.0",
-    "babel-eslint": "^4.0.10",
+    "babel-eslint": "^4.1.0",
     "babelify": "^6.2.0",
-    "bower": "^1.5.1",
+    "bower": "^1.5.2",
     "browserify": "^11.0.1",
     "browserify-rift-template": "^2.1.0",
     "browserify-trim": "^1.0.1",

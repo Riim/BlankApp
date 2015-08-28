@@ -1,12 +1,12 @@
-import { default as rt, cell } from 'riftjs';
+import { default as rt, d } from 'riftjs';
 
 export default class User extends rt.BaseModel {
-	firstName = cell('');
-	lastName = cell('');
+	@d.active firstName = '';
+	@d.active lastName = '';
 
-	fullName = cell(function() {
-		return (this.firstName() + ' ' + this.lastName()).trim();
-	});
+	@d.active fullName = function() {
+		return (this.firstName + ' ' + this.lastName).trim();
+	};
 
 	constructor(params) {
 		super();

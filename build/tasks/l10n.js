@@ -50,26 +50,37 @@ function generateTexts() {
 	var po = gettext.generate(sources, {
 		language: $.util.env.lang,
 		existingPO: fs.existsSync(existingPOFile) ? fs.readFileSync(existingPOFile, 'utf-8') : undefined,
-		fnNames: ['t', 'nt']
+
+		fnNames: {
+			gettext: 't',
+			ngettext: 'nt',
+			pgettext: 'pt',
+			npgettext: 'npt'
+		}
 	});
 
 	fs.writeFileSync(path.join(dir, $.util.env.lang + '.po'), po);
 
 	var poJSON = gettextParser.po.parse(po);
-	var translations = poJSON.translations[''];
+	var translations = poJSON.translations;
+	var texts = {};
 
-	var texts = Object.keys(translations).reduce(function(texts, id) {
-		if (id) {
-			var trnsl = translations[id];
-			var value = trnsl.msgid_plural ? trnsl.msgstr : trnsl.msgstr[0];
+	Object.keys(translations).forEach(function(context) {
+		var trnsls = translations[context];
 
-			if (value) {
-				texts[id] = value;
+		texts[context] = Object.keys(trnsls).reduce(function(texts, id) {
+			if (id) {
+				var trnsl = trnsls[id];
+				var value = trnsl.msgid_plural ? trnsl.msgstr : trnsl.msgstr[0];
+
+				if (value) {
+					texts[id] = value;
+				}
 			}
-		}
 
-		return texts;
-	}, {});
+			return texts;
+		}, {});
+	});
 
 	fs.writeFileSync(path.join(dir, 'index.json'), JSON.stringify(texts));
 }

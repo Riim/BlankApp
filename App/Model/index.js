@@ -1,4 +1,4 @@
-import { default as rt, d } from 'riftjs';
+import { rt, d } from 'riftjs';
 import User from './User';
 
 export default class Model extends rt.BaseModel {

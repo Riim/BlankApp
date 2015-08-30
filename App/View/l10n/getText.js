@@ -12,11 +12,11 @@ let helpers = {
 
 let reInsert = /\{(?:([$_\w]+)(?::((?:[^|]*\|)+?[^}]*))?|([$_a-zA-Z][$_\w]*)\(([$_\w]+)\))\}/;
 
-export function getText(id, plural, view, params) {
+export function getText(context, id, plural, view, params) {
 	let text;
 
-	if (hasOwn.call(texts, id)) {
-		text = plural ? texts[id][getPluralIndex(params[0])] : texts[id];
+	if (hasOwn.call(texts, context) && hasOwn.call(texts[context], id)) {
+		text = plural ? texts[context][id][getPluralIndex(params[0])] : texts[context][id];
 	} else {
 		text = id;
 	}
@@ -58,9 +58,17 @@ export function getText(id, plural, view, params) {
 }
 
 export function t(id) {
-	return getText(id, false, this, slice.call(arguments, 1));
+	return getText('', id, false, this, slice.call(arguments, 1));
+}
+
+export function pt(context, id) {
+	return getText(context, id, false, this, slice.call(arguments, 1));
 }
 
 export function nt(id, count) {
-	return getText(id, true, this, slice.call(arguments, 1));
+	return getText('', id, true, this, slice.call(arguments, 1));
+}
+
+export function npt(context, id, count) {
+	return getText(context, id, true, this, slice.call(arguments, 1));
 }

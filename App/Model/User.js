@@ -1,4 +1,4 @@
-import { default as rt, d } from 'riftjs';
+import { rt, d } from 'riftjs';
 
 export default class User extends rt.BaseModel {
 	@d.active firstName = '';

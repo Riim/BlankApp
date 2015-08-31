@@ -1,10 +1,10 @@
 import { rt, d } from 'riftjs';
 
 export default class User extends rt.BaseModel {
-	@d.active firstName = '';
-	@d.active lastName = '';
+	@d.observable firstName = '';
+	@d.observable lastName = '';
 
-	@d.active fullName = function() {
+	@d.computed fullName = function() {
 		return (this.firstName + ' ' + this.lastName).trim();
 	};
 

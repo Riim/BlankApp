@@ -3,23 +3,7 @@ import rt from 'riftjs';
 import Model from './Model';
 import View from './View';
 
-let nodes = [
-	{
-		name: 'root',
-		path: '/'
-	},
-	{
-		name: 'notFound',
-		path: '/404'
-	},
-	{
-		path: '/*',
-		callback: function(path) {
-			console.log('Not found path: "' + path + '"');
-			this.router.route('/404', false);
-		}
-	}
-];
+import nodes from './nodes';
 
 export default class App extends rt.BaseApp {
 	constructor(params) {

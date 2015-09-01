@@ -8,7 +8,7 @@ export default class User extends rt.BaseModel {
 		return (this.firstName + ' ' + this.lastName).trim();
 	};
 
-	constructor(params) {
+	constructor(params = {}) {
 		super();
 
 		if (params.data) {

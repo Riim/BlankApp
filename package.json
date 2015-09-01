@@ -21,7 +21,7 @@
     "babel": "^5.8.23",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.45.0"
+    "riftjs": "^0.45.2"
   },
   "devDependencies": {
     "autoprefixer": "^5.2.0",

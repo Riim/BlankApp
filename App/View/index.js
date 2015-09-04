@@ -1,5 +1,5 @@
 import { defaults as templateRuntimeDefaults, wrap as wrapTemplate } from 'rift-template-runtime';
-import rt from 'riftjs';
+import { rt } from 'riftjs';
 
 import templates from '../../dist/private/templates';
 import { t, nt } from './l10n/getText';

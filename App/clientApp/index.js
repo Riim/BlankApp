@@ -1,4 +1,4 @@
-import rt from 'riftjs';
+import { rt } from 'riftjs';
 import App from '..';
 
 rt.proxy.deserializeCache(window.__rt_proxyCacheDump__);

@@ -1,4 +1,4 @@
-import rt from 'riftjs';
+import { rt } from 'riftjs';
 
 import Model from './Model';
 import View from './View';

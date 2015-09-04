@@ -1,4 +1,4 @@
-import rt from 'riftjs';
+import { rt } from 'riftjs';
 
 class HelloViewer extends rt.BaseView {
 	//

@@ -24,7 +24,7 @@ function bundle() {
 		.pipe($.trim())
 		.pipe($.htmlBindingTransform({
 			attrBindName: 'rt-bind',
-			outputDelimiters: ['{{,\'\'+_.', '}}'],
+			outputDelimiters: ['{{', '}}'],
 			root: '_'
 		}))
 		.pipe($.riftTemplate({

@@ -38,7 +38,7 @@ function bundle() {
 			.transform(browserifyTrim(['.rtt']))
 			.transform(htmlBindify.configure(['.rtt'], {
 				attrBindName: 'rt-bind',
-				outputDelimiters: ['{{,\'\'+_.', '}}'],
+				outputDelimiters: ['{{', '}}'],
 				root: '_'
 			}))
 			.transform(browserifyRiftTemplate);

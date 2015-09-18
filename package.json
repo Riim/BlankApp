@@ -20,10 +20,10 @@
     "babel": "^5.8.23",
     "express": "^4.13.1",
     "rift-template-runtime": "^1.2.0",
-    "riftjs": "^0.45.4"
+    "riftjs": "^0.46.0"
   },
   "devDependencies": {
-    "autoprefixer": "^5.2.0",
+    "autoprefixer": "^6.0.2",
     "babel-eslint": "^4.1.0",
     "babelify": "^6.3.0",
     "bower": "^1.5.2",
@@ -48,7 +48,7 @@
     "gulp-rift-template": "^2.4.0",
     "gulp-svg-sprite": "^1.2.9",
     "gulp-trim": "^1.0.2",
-    "gulp-uglify": "^1.4.0",
+    "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "html-bindify": "^1.1.0",
     "merge-stream": "^1.0.0",
@@ -60,10 +60,10 @@
     "postcss-nested": "^1.0.0",
     "postcss-simple-vars": "^1.0.0",
     "require-dir": "^0.3.0",
-    "rift-gettext": "^0.1.8",
+    "rift-gettext": "^1.0.0",
     "svg-spriter": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.3.1"
+    "watchify": "^3.4.0"
   }
 }

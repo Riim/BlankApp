@@ -53,9 +53,7 @@ var config = {
 	},
 
 	fonts: {
-		files: [
-			//
-		]
+		files: ['assets/fonts/**/*.{eot,woff,woff2,ttf,svg}']
 	},
 
 	browserify: {
